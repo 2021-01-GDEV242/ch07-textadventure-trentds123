@@ -90,6 +90,14 @@ public class Game
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
     }
+    
+    /**
+     * Print out the opening message for the player.
+     */
+    public void printEat() {
+    	System.out.println("You are full now");
+    }
+ 
 
     /**
      * Given a command, process (that is: execute) the command.
@@ -114,7 +122,11 @@ public class Game
             case GO:
                 goRoom(command);
                 break;
-
+            
+            case EAT:
+            	printEat();
+            	break;
+            	
             case QUIT:
                 wantToQuit = quit(command);
                 break;
