@@ -35,6 +35,8 @@ public class Game
     private void createRooms()
     {
         Room outside, theater, pub, lab, office;
+        Room dormA, dormB,dormC,dormD,dormE;
+        Room gym, gameRoom, pool, arcade, store;
       
         // create the rooms
         outside = new Room("outside the main entrance of the university");
@@ -43,23 +45,60 @@ public class Game
         lab = new Room("in a computing lab");
         office = new Room("in the computing admin office");
         
+        dormA = new Room("in dorm A");
+        dormB = new Room("in dorm B");
+        dormC = new Room("in dorm C");
+        dormD = new Room("in dorm D");
+        dormE = new Room("in dorm E");
+        gym = new Room("time to workout, your in the gym");
+        gameRoom = new Room("your in the videogame hub meet some gamers!");
+        pool = new Room("make sure you have a swimsuit, your at the campus pool!");
+        arcade = new Room("your in the arcade");
+        store = new Room("in the store");
+        
+        
         // initialise room exits
         outside.setExit("east", theater);
         outside.setExit("south", lab);
         outside.setExit("west", pub);
-
+        outside.setExit("north", gym);
         theater.setExit("west", outside);
-
         pub.setExit("east", outside);
-
+        pub.setExit("north", dormA);
         lab.setExit("north", outside);
         lab.setExit("east", office);
-
         office.setExit("west", lab);
+        gym.setExit("south", outside);
+        gym.setExit("west", dormA);
+        gym.setExit("east", dormE);
+        dormA.setExit("north", dormB);
+        dormA.setExit("east", gym);
+        dormB.setExit("north", gameRoom);
+        dormB.setExit("east", dormC);
+        gameRoom.setExit("south", dormB);
+        dormC.setExit("east", dormB);
+        dormC.setExit("west", dormD);
+        dormD.setExit("east", dormC);
+        dormD.setExit("north", pool);
+        pool.setExit("south", dormD);
+        dormE.setExit("west", store);
+        dormC.setExit("east", gym);
+        store.setExit("east", dormE);
+        office.setExit("west", arcade);
+        arcade.setExit("east", office);
+      
+        
+        
+        
 
         currentRoom = outside;  // start game outside
     }
-
+    /**
+     *  allows the long description of the room be read when user types look.
+     */ 
+    public void look() {
+    	System.out.println(currentRoom.getLongDescription());
+    }
     /**
      *  Main play routine.  Loops until end of play.
      */
@@ -125,6 +164,10 @@ public class Game
             
             case EAT:
             	printEat();
+            	break;
+            
+            case LOOK:
+            	look();
             	break;
             	
             case QUIT:
