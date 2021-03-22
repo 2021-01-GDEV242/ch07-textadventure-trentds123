@@ -11,8 +11,8 @@
  *  rooms, creates the parser and starts the game.  It also evaluates and
  *  executes the commands that the parser returns.
  * 
- * @author  Michael Kölling and David J. Barnes
- * @version 2016.02.29
+ * @author  Trent Seidel
+ * @version 2021.03.22
  */
 
 public class Game 
@@ -179,4 +179,9 @@ public class Game
             return true;  // signal that we want to quit
         }
     }
+    public static void main(String args[]) {
+    	Game game = new Game();
+    	game.play();
+    }
 }
+
