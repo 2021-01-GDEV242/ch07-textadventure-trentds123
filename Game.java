@@ -20,6 +20,7 @@ public class Game
     private Parser parser;
     private Room currentRoom;
     private Room oldRoom;
+    private Room trap;
         
     /**
      * Create the game and initialise its internal map.
@@ -39,6 +40,8 @@ public class Game
         Room dormA, dormB,dormC,dormD,dormE;
         Room gym, gameRoom, pool, arcade, store;
         Item bat,ball,wire,headset,frog,fish,camal,tire, shovel,shirt,glove,hat, socks, jeans, tshirt, bathingSuit;
+        Room trapDoor = new Room("your trapped, you die");
+        
         //create the items
         bat = new Item("baseball bat", "10lb");
         ball = new Item("Ball", ".15lb");
@@ -94,6 +97,7 @@ public class Game
         store.addItem(socks);
         store.addItem(hat);
         store.addItem(camal);
+       
         
         
         // initialise room exits
@@ -125,9 +129,8 @@ public class Game
         store.setExit("east", dormE);
         office.setExit("west", arcade);
         arcade.setExit("east", office);
-      
-        
-        
+        office.setExit("south", trapDoor);
+        trap = trapDoor;
         
 
         currentRoom = outside;  // start game outside
@@ -248,35 +251,46 @@ public class Game
         }
 
         String direction = command.getSecondWord();
+        Room nextRoom = currentRoom.getExit(direction);
         setOldRoom(currentRoom);// setting this method in the go room becuase it has to go foward first in order to go back.
         // Try to leave current room.
-        Room nextRoom = currentRoom.getExit(direction);
-
         if (nextRoom == null) {
             System.out.println("There is no door!");
         }
         else {
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
+            if(currentRoom == trap) {
+            	setOldRoom(null);
+            }
         }
     }
     
-    
+   /**
+    * set old room when needed to be set 
+    * @param room
+    */
     private void setOldRoom(Room room) {
     	this.oldRoom = room;
     }
+    /**
+     *  get the old room
+     * @return oldRoom
+     */
     private Room getOldRoom() {
     	return this.oldRoom;// if its null, than it wont go back.
     }
     
-    /** 
+ 
+    /**
      * brings you back to the prevoius room, if no room than messige will come up
+     * @param command
      */
     private void back(Command command) 
     {
         if( oldRoom == null) {
             // if there is no go commands, no were to go back
-            System.out.print("No previus rooms");
+            System.out.print("No previus rooms\n");
         }
         else {
         	 currentRoom = oldRoom;
