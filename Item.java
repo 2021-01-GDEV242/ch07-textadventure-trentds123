@@ -13,10 +13,10 @@
  */
 
 public class Item {
-	
-	String weight;
-	String discription;
-	
+	// fields
+	private String weight;
+	private String discription;
+	//contructor
 	public Item(String description, String weight) {
 		
 		this.discription = description;
@@ -25,20 +25,14 @@ public class Item {
 	}
 	
 	/**
-	 * @return item description
+	 * @return item description from constructor 
 	 */
-	public String getDiscription() {
-		return discription;
+	public String getItemInfo() {
+		String val;
+		val = discription + " " + weight;
+		return val;
 	}
 	
-
-	
-	/**
-	 * @return weight in pounds of item
-	 */
-	public String getWeight() {
-		return weight;
-	}
 	
 
 }

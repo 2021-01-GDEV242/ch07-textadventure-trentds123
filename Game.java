@@ -37,46 +37,68 @@ public class Game
         Room outside, theater, pub, lab, office;
         Room dormA, dormB,dormC,dormD,dormE;
         Room gym, gameRoom, pool, arcade, store;
-        Item bat,ball,wire,headset,frog,fish,camal,tire, shovel,shirt,glove,hat, socks, jeans, tshirt;
+        Item bat,ball,wire,headset,frog,fish,camal,tire, shovel,shirt,glove,hat, socks, jeans, tshirt, bathingSuit;
         //create the items
-        bat = new Item("baseball bat", "10 lb");
-        ball = new Item("Ball", ".15 lb");
-        wire = new Item("wire", "2 lb");
-        headset = new Item("headset", "10 oz");
-        frog = new Item("toy frog", "2 lb");
-        fish = new Item("rubber fish", "12 lb");
-        camal = new Item("camal statue", "20 lb");
-        tire = new Item("tire", "2 lb");
-        shovel = new Item("shovel", "3 lb");
-        shirt = new Item("long sleeve shirt", "1 oz");
-        glove = new Item("electrical gloves", "1 lb");
-        hat = new Item("RVCC hat", "3 oz");
-        socks = new Item("RVCC socks", "2 oz"); 
-        jeans = new Item("RVCC jeans", "1 lb"); 
-        tshirt = new Item("RVCC tshirt", "3 oz");
-        // create the rooms
+        bat = new Item("baseball bat", "10lb");
+        ball = new Item("Ball", ".15lb");
+        wire = new Item("wire", "2lb");
+        headset = new Item("headset", "10oz");
+        frog = new Item("toy frog", "2lb");
+        fish = new Item("rubber fish", "12lb");
+        camal = new Item("camal statue", "20lb");
+        tire = new Item("tire", "2lb");
+        shovel = new Item("shovel", "3lb");
+        shirt = new Item("long sleeve shirt", "1oz");
+        glove = new Item("electrical gloves", "1lb");
+        hat = new Item("RVCC hat", "3oz");
+        socks = new Item("RVCC socks", "2oz"); 
+        jeans = new Item("RVCC jeans", "1lb"); 
+        tshirt = new Item("RVCC tshirt", "3oz");
+        bathingSuit = new Item("swimming trunks", "1oz");
+        
+        // create the rooms and add item(s) to each room
         outside = new Room("outside the main entrance of the university");
         theater = new Room("in a lecture theater");
+        theater.addItem(tshirt);
+        theater.addItem(jeans);
         pub = new Room("in the campus pub");
+        pub.addItem(glove);
         lab = new Room("in a computing lab");
+        lab.addItem(frog);
         office = new Room("in the computing admin office");
-        
+        office.addItem(shirt);        
         dormA = new Room("in dorm A");
+        dormA.addItem(camal);
+        dormA.addItem(fish);
         dormB = new Room("in dorm B");
+        dormB.addItem(tire);
         dormC = new Room("in dorm C");
+        dormC.addItem(jeans);
         dormD = new Room("in dorm D");
+        dormD.addItem(shovel);
         dormE = new Room("in dorm E");
+        dormE.addItem(hat);
         gym = new Room("time to workout, your in the gym");
+        gym.addItem(hat);
+        gym.addItem(tshirt);
+        gym.addItem(glove);;
         gameRoom = new Room("your in the videogame hub meet some gamers!");
+        gameRoom.addItem(headset);
         pool = new Room("make sure you have a swimsuit, your at the campus pool!");
+        pool.addItem(bathingSuit);;
         arcade = new Room("your in the arcade");
+        arcade.addItem(ball);
         store = new Room("in the store");
+        store.addItem(tshirt);
+        store.addItem(socks);
+        store.addItem(hat);
+        store.addItem(camal);
         
         
         // initialise room exits
-        outside.setExit("east", theater);
+        outside.setExit("west", theater);
         outside.setExit("south", lab);
-        outside.setExit("west", pub);
+        outside.setExit("east", pub);
         outside.setExit("north", gym);
         theater.setExit("west", outside);
         pub.setExit("east", outside);
