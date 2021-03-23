@@ -19,6 +19,7 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
+    private Room oldRoom;
         
     /**
      * Create the game and initialise its internal map.
@@ -211,6 +212,9 @@ public class Game
             case QUIT:
                 wantToQuit = quit(command);
                 break;
+            case BACK:
+            	back(command);
+            	break;
         }
         return wantToQuit;
     }
@@ -244,7 +248,7 @@ public class Game
         }
 
         String direction = command.getSecondWord();
-
+        setOldRoom(currentRoom);// setting this method in the go room becuase it has to go foward first in order to go back.
         // Try to leave current room.
         Room nextRoom = currentRoom.getExit(direction);
 
@@ -256,7 +260,34 @@ public class Game
             System.out.println(currentRoom.getLongDescription());
         }
     }
+    
+    
+    private void setOldRoom(Room room) {
+    	this.oldRoom = room;
+    }
+    private Room getOldRoom() {
+    	return this.oldRoom;// if its null, than it wont go back.
+    }
+    
+    /** 
+     * brings you back to the prevoius room, if no room than messige will come up
+     */
+    private void back(Command command) 
+    {
+        if( oldRoom == null) {
+            // if there is no go commands, no were to go back
+            System.out.print("No previus rooms");
+        }
+        else {
+        	 currentRoom = oldRoom;
+             System.out.println(currentRoom.getLongDescription());
+        }
+   
+    }
 
+    
+    
+    
     /** 
      * "Quit" was entered. Check the rest of the command to see
      * whether we really quit the game.
