@@ -37,7 +37,23 @@ public class Game
         Room outside, theater, pub, lab, office;
         Room dormA, dormB,dormC,dormD,dormE;
         Room gym, gameRoom, pool, arcade, store;
-      
+        Item bat,ball,wire,headset,frog,fish,camal,tire, shovel,shirt,glove,hat, socks, jeans, tshirt;
+        //create the items
+        bat = new Item("baseball bat", "10 lb");
+        ball = new Item("Ball", ".15 lb");
+        wire = new Item("wire", "2 lb");
+        headset = new Item("headset", "10 oz");
+        frog = new Item("toy frog", "2 lb");
+        fish = new Item("rubber fish", "12 lb");
+        camal = new Item("camal statue", "20 lb");
+        tire = new Item("tire", "2 lb");
+        shovel = new Item("shovel", "3 lb");
+        shirt = new Item("long sleeve shirt", "1 oz");
+        glove = new Item("electrical gloves", "1 lb");
+        hat = new Item("RVCC hat", "3 oz");
+        socks = new Item("RVCC socks", "2 oz"); 
+        jeans = new Item("RVCC jeans", "1 lb"); 
+        tshirt = new Item("RVCC tshirt", "3 oz");
         // create the rooms
         outside = new Room("outside the main entrance of the university");
         theater = new Room("in a lecture theater");
