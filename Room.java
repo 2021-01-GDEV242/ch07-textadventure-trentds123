@@ -1,4 +1,5 @@
 import java.util.Set;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -12,15 +13,15 @@ import java.util.Iterator;
  * connected to other rooms via exits.  For each existing exit, the room 
  * stores a reference to the neighboring room.
  * 
- * @author  Michael Kölling and David J. Barnes
- * @version 2016.02.29
+ * @author  Trent Seidel
+ * @version 2021.03.22
  */
 
 public class Room 
 {
     private String description;
     private HashMap<String, Room> exits;        // stores exits of this room.
-
+    private ArrayList<Item> itemsList; 
     /**
      * Create a room described "description". Initially, it has
      * no exits. "description" is something like "a kitchen" or
@@ -31,6 +32,7 @@ public class Room
     {
         this.description = description;
         exits = new HashMap<>();
+        itemsList = new ArrayList<Item>();
     }
 
     /**
@@ -41,6 +43,7 @@ public class Room
     public void setExit(String direction, Room neighbor) 
     {
         exits.put(direction, neighbor);
+     
     }
 
     /**
@@ -51,6 +54,35 @@ public class Room
     {
         return description;
     }
+    
+
+    /**
+     * add item to room.
+     * @param item, the item being added to the room.
+     */
+    public void addItem(Item item) {
+    	itemsList.add(item);
+    }
+    
+    /**
+     * Return a description of the items in the room
+     * @return a description of the items and detials
+     */
+    private String getItemDetails()
+    {
+        String returnString = "";
+        for(Item i : itemsList) {
+        	if(itemsList.size()>1) {
+        		returnString += " and " + i.getItemInfo();
+        	}
+        	else {
+        		if(itemsList.size()>1) {
+            		returnString += " " + i.getItemInfo();
+            	}
+        	}
+        }
+        return "this room has " + itemsList.size() + " item(s): " + returnString;
+    }
 
     /**
      * Return a description of the room in the form:
@@ -60,7 +92,7 @@ public class Room
      */
     public String getLongDescription()
     {
-        return "You are " + description + ".\n" + getExitString();
+        return "You are " + description + ".\n" + getExitString() + "\n" +getItemDetails();
     }
 
     /**
